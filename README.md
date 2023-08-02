@@ -418,11 +418,240 @@ Idp - Identity provider - provedor de identidade
 Sp - Service provider - Provedor de serviço
 Ldap - Consulta acesso de diretórios em serviços Web
 
+Google Workspace - mail
+
+Dns - Domain Name System - sistema de gerenciamento de domínios 
+Mx Records - Tipo de registro DNS que define os servidores de e-mail para um domínio.
+Txt records - Inforamações de textos para fora do domínio
+Cname Records - Informações de domínio mas baseado em domíonios 
+A Record - Linka o domínio a um ip de um computador
+NS Record - determina com servidor vai comunicar as informações dns 
+
+Opções de segurança de Gmail
+
+SPF - Sender Policy framework - Estrutura da política do remetente -  mecanismo de autenticação de e-mail que ajuda a evitar o spam e a falsificação de e-mail.
+Dkim - Domain Keys Identified Mail Standard - Prevenção de Spoofing adicionando um header personalizado ao e-mail.
+DMarc - Domain based message authentication - fala pro e-mail como lidar com mensagens SPF/DKIM
+
+Configurando dkim
+1. apps
+2. Google Workspace
+3. Gmail
+4. autenticação de E-mails
+5. Checar o status
+
+pop - sincronização do gmail e outros serviços de email
+Imap - sincroniza a conta em vários dispositivos
+
+prevenção spam e pishing
+
+Como criar uma whitelist de e-mails
+1. apps
+2. Google Workspace
+3. Gmail
+4. Spam, phishging e malware
+5. email whitelist
+6. adicionar o ip ou domínio
+7. salvar
+
+Compliance
+
+Regras de complicance escaneiam e-mails e podem bloquear caso a mensagem bata com alguma regra criada, as mensagens podem ser:
+- Rejeitadas antes de chegar ao receptor
+- Enviada para quarentena para ser analisada por um administrador
+- Editada antes de ser enviada
+- Enviada como SPAM
+
+Opções de compliance
+- Emails e chat auto-deletion
+- OCR for e-mail attachments
+- Restricted delivery
+- security sandbox
+
+| Serviço                   | Uso                                                                                     |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| Emails e chat auto-deletion | Os usuários podem definir um intervalo de tempo após o qual os e-mails e as mensagens de bate-papo serão excluídos automaticamente. Isso pode ajudar a proteger a privacidade dos usuários e a evitar o armazenamento de informações confidenciais por muito tempo. |
+| OCR for e-mail attachments | Os usuários podem usar a tecnologia OCR para converter anexos de e-mail em texto. Isso pode ser útil para visualizar anexos que não são suportados por um programa de e-mail ou para extrair informações de anexos que não são formatados em um formato legível por humanos. |
+| Restricted delivery       | Os usuários podem restringir a entrega de e-mails a certos endereços de e-mail ou domínios. Isso pode ser útil para evitar que e-mails sejam entregues a pessoas ou organizações indesejadas. |
+| Security sandbox          | Os usuários podem usar uma sandbox de segurança para executar arquivos e aplicativos em um ambiente isolado. Isso pode ajudar a proteger os usuários contra malware e outros ataques. |
+
+
+
+
+fases de migração de deployment
+
+- Core it
+- Early adopters
+- Global go-live
+
+
+### Core it (adição de usuários)
+- Criação do design técnico
+- Confirmação e testes do setup
+- Identificar pontos de integração
+- Familiarizar com ferramentas e tecnologias
+
+### Early Adopters (5 - 15% da força de trabalho)
+- Validar a migração
+- Obter feedbacks
+- Testes de mudança de gerenciamento
+- Adição e configuração de usuários, grupos e contatos
+> Designe google guides para ajudar com a organização
+
+- nessa fase, o mx record envia primeiro para o servidor do google os e-mails e depois roteia para o servidor legado
+  
+### Global go live (100% da força de trabalho) 
+- Inclusão de todos os funcionários
+- Fácil acesso a treinamento requerido
+
+
+Google Cloud directory sync 
+
+sincornização de usuários do serviço LDAP
+
+ para sincronizar senhas, use o gps - google password sync
+
+ não é recomendado sincronizar OUs e calendários 
+
+
+Mail routing
+
+Determine como os emails são roteados e armazenados
+
+| Tipo de roteamento | Definição                                                                                                          |
+|--------------------|--------------------------------------------------------------------------------------------------------------------|
+| Direct delivery    | O e-mail é entregue diretamente ao servidor de e-mail do destinatário.                                            |
+| Dual delivery      | O e-mail é entregue ao servidor de e-mail do destinatário e a um serviço de entrega alternativo, como uma caixa de entrada de spam ou um serviço de arquivamento. |
+| Split delivery     |Envio de e-mails para vários sistemas . |
+| catch all | redirecionamento de e-mails invalidos |
+| Redirecionamento | redireciona os e-mails para outra caixa de entrada |
+
+> para evitar dados deletados e empregados demitidos, de pra eles uma lience de archived user (Archived user) e extenda o tempo da caixa de entrada
+
+> a tecnologia utiliza para ver as configurações de aplicativos de terceiros é o Oauth
+> Para ver um overview dos usuários reports>audit>tokens
+> SAML - serviço de autenticação segura eficiente
+> Para migrar um serviço Imap, use a ferramente data migration
+> um funcionário foi demitido, para receber os e-mails enviados para ele, voce pode mapear a caixa de entrada com um map to map para receber os e-mails ( apps>gwsp>gmail>routing)
+> Um usuário perdeu o laptop com idp, para encerrar a seção dele, peça pra um adimistrador encerrar o SSO
+> Domínio teste : domain-name.test.google-a.com
+> O da colab seria julio.ferrer@colaborativaeduc.test.google-a.com
+> Para splitar e-mails para servidor legado, é ncessário adicionar o servidor host e mudar a rota de envio para externa
+> O Oauth é o protocolo de autorização que permite que aplicativos terceiros (third-party) acessem recursos em nome do usuário
+> O dlp (data loss protection) é um serviço para efvitar o compartilhamento de informações esnsíveis
+> Google workspace update blog - todos up updates do google workspace
+> google workspace release calendar - datas de todas as atualizações
+> existem dois tipos de atualizações
+> training or resource launcher - mudanças mais tardias
+> rapid release feature launch - assim que lançar os usuários vão receber as alterações
+> Para adicionar arquivos CSV para usuários é obrigatório: primeiro nome, último nome, senha, e-mail e OU
+> Um usuário deletado só pode ter seus dados recuperados dentro de 20 dias.
+> para restaura-lo o seu nome não pode ter sido dado pra outra pessoa ou grupo
+> Security sandbox só está disponível para versões enterprise
+> Para dar permissões a apps terceiros, você precisa dos escopos de autorização e do client ID
+> Para provisionar usuários em massa, use o GAM
+> Google workspace sync for microsoft outllok GWSMO
+> Comprehensive mail storage- verifica se o e-mail foi enviado
+> admin toolbox - ferramentas de administrador
+> para ver se um e-mail foi enviado, verifique o log dele
+> directory api - adicione aliases a domínios
+> para ver reports de usuários ( home>reports>apps reports:accounts
+> tipos de reports user reports ( contas/uso de apps e segurança)
+> apps reports - todos os serviços do google
+
+Security investigation tool
+
+Ferramenta de logs para analisar e tomar ações
+
+> podemos suspoender ou restaurar usuários
+> Para usar, precisa das permissões (require reviewer e view email content)
+> só pra liçença bussiness plus pra cima
+> Serve para deletar e-mails maliciosos e revisar atividade
+> Identificar, triar e tomar ações de segurança e privacidade no seu domínio
+
+
+
+> Content-aware - somente dispositivos da empresa podem logar no sistema
+> tipos de acesso de grupos - public, team e restricted 
+
+> email spoofing - conteúdo alterado por falta de configuração
+
+> Bimi - brand indications for message indentification, serve para adicionar uma logo da sua marca
+
+txt e cname records
+txt record armazena textos, o cname mapeia dominios
+exemplo de txt record : v=spf1 include:_spf.google.com -all
+
+use txt record para: autenticação de domínio, configurar spf e dmairc, adicionar retrições de acesso, enviar emails evertificar integridade do domínio
+use cname record para: criar apelidos de domínios, apontar e migrar domínios para diferentes provedores
+
+serviços de e-mails
+Registros SPF - protege seu domínio de ser usado p enviar spam
+assinatura DLOM - criptografia que protegej o conteúdo de e-mail
+Autenticação DMArc - gerencia mensagens verificar SPF e DKim
+Bimi - Criação de marcas com dmarc
+
+passos para autenticar e-mail para g-mails
+1. garanta entrega e envite falsificações com SPF
+2. Aumente a segurtança do e-mail enviado com DKIM
+3. evite seu domínio de ser usado para enviar spam com dmarc
+4. adicione a logo da sua marca com o BIMi
+
+O header do e-mail é usado para definir as rotas e meios de autenticação
+
+
+google toolbox 
+browser toolbox - problemas de conectividade
+dns verification - testes como integridade e configurações
+enconding/decodign - debugar problemas com codificações
+log analyzer - erros e avisos em arquivos e ferramentas
+mail - análise do cabeçalho do e-mail para ver entrega e roteamento 
+tipos de login challenge
+1. mobile devices login challenge
+employee id login challenge
+recovery email login challenge
+
+no google cloud directory sync podem ser sincornizados
+- unidades organizacionais
+- Contas de uusários
+- Perfis
+- Grupos
+- Esquemas
+- Contatos
+- Recursos de calendário
+- Liçensas
+mensagens, eventos e arquivos não são compartilhados
+
+Funções administrativas 
+- superamdminsitrador
+- Administrador de grupos
+- Administrador de central de ajuda
+- Administrador de gerenciamento de usuários
+- Administrador de serviços
+- Administrador míovel
+- Administrador de armazenamneto
+- Administrador de revendedor
+
+> Servidor Ldap (lightwheight directory access protocol) - serviços ad do outlook
+
+SSO e IDP
+
+Sso - unifica métodos de login com google
+IDP - gerencia credenciais e fornece a autenticação
+SAML - SEcurity assertion markup language ( protocolo de autenticação )
+
+quando um uusário tenta acessar umSAML o SP(service provider) solicita o IDP para autenticar o usuário.
+
+Target audience - publico alvo - grupo de usuários para compartilhar itens, ajudam a melhorar se gurança e facilitam o compartilamento adequado 
+Content- aware access - para usuários conectarem de casa em computador pessoais, configure o endpoint verification
+
+security sandbox - ferramenta que abre o e-mail em espaço sandbox para detectar malwares em anexo de -emails.
 
 
 <details>
 <summary> </summary><br/>
 </details>
+
 
 
 

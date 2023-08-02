@@ -528,36 +528,69 @@ Determine como os emails são roteados e armazenados
 
 > para evitar dados deletados e empregados demitidos, de pra eles uma lience de archived user (Archived user) e extenda o tempo da caixa de entrada
 
+
 > a tecnologia utiliza para ver as configurações de aplicativos de terceiros é o Oauth
+
 > Para ver um overview dos usuários reports>audit>tokens
+
 > SAML - serviço de autenticação segura eficiente
+
 > Para migrar um serviço Imap, use a ferramente data migration
-> um funcionário foi demitido, para receber os e-mails enviados para ele, voce pode mapear a caixa de entrada com um map to map para receber os e-mails ( apps>gwsp>gmail>routing)
+
+> um funcionário foi demitido, para receber os e-mails enviados para ele, voce pode mapear a caixa de entrada com um map to map para receber os e-mails (
+
+> apps>gwsp>gmail>routing)
+
 > Um usuário perdeu o laptop com idp, para encerrar a seção dele, peça pra um adimistrador encerrar o SSO
+
 > Domínio teste : domain-name.test.google-a.com
+
 > O da colab seria julio.ferrer@colaborativaeduc.test.google-a.com
+
 > Para splitar e-mails para servidor legado, é ncessário adicionar o servidor host e mudar a rota de envio para externa
+
 > O Oauth é o protocolo de autorização que permite que aplicativos terceiros (third-party) acessem recursos em nome do usuário
+
 > O dlp (data loss protection) é um serviço para efvitar o compartilhamento de informações esnsíveis
+
 > Google workspace update blog - todos up updates do google workspace
+
 > google workspace release calendar - datas de todas as atualizações
+
 > existem dois tipos de atualizações
+
 > training or resource launcher - mudanças mais tardias
+
 > rapid release feature launch - assim que lançar os usuários vão receber as alterações
+
 > Para adicionar arquivos CSV para usuários é obrigatório: primeiro nome, último nome, senha, e-mail e OU
+
 > Um usuário deletado só pode ter seus dados recuperados dentro de 20 dias.
+
 > para restaura-lo o seu nome não pode ter sido dado pra outra pessoa ou grupo
+
 > Security sandbox só está disponível para versões enterprise
+
 > Para dar permissões a apps terceiros, você precisa dos escopos de autorização e do client ID
+
 > Para provisionar usuários em massa, use o GAM
+
 > Google workspace sync for microsoft outllok GWSMO
+
 > Comprehensive mail storage- verifica se o e-mail foi enviado
+
 > admin toolbox - ferramentas de administrador
+
 > para ver se um e-mail foi enviado, verifique o log dele
+
 > directory api - adicione aliases a domínios
+
 > para ver reports de usuários ( home>reports>apps reports:accounts
+
 > tipos de reports user reports ( contas/uso de apps e segurança)
+
 > apps reports - todos os serviços do google
+
 
 Security investigation tool
 

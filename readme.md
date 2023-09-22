@@ -130,7 +130,7 @@ Etapas da autenticação com o google
 
 
 <details>
-<summary> Google Cloud Directory Sync  </summary><br/>
+<summary> Google Cloud Directory Sync * </summary><br/>
   
 ## Google Cloud Directory Sync
 
@@ -174,7 +174,7 @@ O GCDS usa uma série de regras para decidir o que sincronizar porém algumas co
 ---
 
 <details>
-<summary> DNS e Aliases </summary><br/>
+<summary> DNS e Aliases * </summary><br/>
 
 ## DNS e Aliases
 
@@ -272,7 +272,7 @@ everyone@dominio.com.br
 
 
 <details>
-<summary> Registros SPF, DKIM, DMARC E Bimi </summary><br/>
+<summary> Registros SPF, DKIM, DMARC E Bimi * </summary><br/>
 
 ## Registros SPF, DKIM, DMARC E Bimi
 
@@ -305,7 +305,7 @@ Passos para autenticar e-mail para g-mails
 ---
 
 <details>
-<summary> Roteamento de e-mail </summary><br/>
+<summary> Roteamento de e-mail * </summary><br/>
 
 ## Roteamento de e-mail
 

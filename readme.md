@@ -68,13 +68,54 @@ Para lidar com essa prática, podemos segmentar as funções administrativas den
 
 A autenticação do Google usa vários serviços, os principais conceitos vão de SSO a IDP e SP, vamos ver eles agora:
 
-|Serviço|	Explicação
-|IDP ( Identity provider)	Provedor de identidade que autentica usuários e emite tokens de segurança
-|SP ( Service  Provider )	Servidor que aceita tokens e da acesso aos usuários
-|LDAP ( Lightweight directory access protocol)	Protocolo que permite que os usários acessem dados no servidor ( Esse é o protocolo usado pelo servidor AD ( Active Directory) 
-|SAML ( Security Assertion Markup Language )	Protocolo de autenticação, quando um usuário tenta acessar um app que usa saml, o SP solicita o IDP para autenticar o usuário
+|Serviço|	Explicação|
+|:-:|:-:|
+|IDP ( Identity provider) |	Provedor de identidade que autentica usuários e emite tokens de segurança |
+|SP ( Service  Provider ) |	Servidor que aceita tokens e da acesso aos usuários |
+|SAML ( Security Assertion Markup Language ) |	Protocolo de autenticação, quando um usuário tenta acessar um app que usa SAML, o SP solicita o IDP para autenticar o usuário |
+|SSO ( Single Sign on ) | Método de autenticação e autorização que permite que usuários acessem múltiplas aplicações com apenas um único login |
+
+
+```mermaid
+flowchart 
+
+
+    A{{Usuário}} --"Usuário acessa
+ aplicação"--> B{{Provedor de serviço- SP }}
+    B --"O serviço solicita
+ o idp utilizando o 
+protocolo saml"--> C{{Provedor de identidade - IDP }}
+    C --"O usuário 
+acessa a tela de 
+login com google"--> D{{"`Conta do Google 
+Tela de autenticação`"}}
+    D --"O google autentica
+ o usuário"--> C
+    C --"O IDP envia o SAML
+ com as informações 
+do usuário"--> B
+
+B --"O SP faz a validação
+ do SAML e o usuário é
+ autenticado com sucesso"-->A
+```
+
+Etapas da autenticação com o google
+
+1. O usuário acessa o serviço
+1. O Serviço (SP) solicita o IDP com o protocolo SAML
+1. A tela de autenticação com o google é aberta
+1. O usuário é redirecionado com o SAML preenchido com suas informações
+1. O Serviço(SP) Faz a validação do SAML
+1. O Serviço garante acesso ao usuário
+1. O usuário é autenticado com sucesso
 
 </details>
+
+---
+
+
+
 
 O último passo é configurar o domínio DNS. Isso envolverá a adição de registros DNS ao seu domínio para apontar para o Google Workspace.
 
@@ -85,13 +126,12 @@ Os registros DNS específicos que você precisa adicionar dependerão do seu reg
 - Registro TXT para o domínio do Google Workspace
 Depois de adicionar os registros DNS, pode levar algumas horas para que as alterações sejam propagadas. Depois que as alterações forem propagadas, você poderá começar a usar o Google Workspace!
 
-
 <details>
 <summary> Google Cloud Directory Sync  </summary><br/>
 
 Serviço que permite sincronizar usuários, grupos e outros dados de um diretório do Active Directory (AD) com o Google Cloud Platform (GCP). Isso pode ser útil para empresas que desejam usar o GCP, mas que também precisam manter seus usuários e grupos em um diretório do AD.
 
-
+|LDAP ( Lightweight directory access protocol)	Protocolo que permite que os usários acessem dados no servidor ( Esse é o protocolo usado pelo servidor AD ( Active Directory) 
 > **O que é LDAP** -  O LDAP (Lightweight Directory Access Protocol) é um protocolo de acesso a diretórios frequentemente usado pelo Active Directory (AD), que é o serviço de diretório da Microsoft usado em ambientes Windows para gerenciar recursos, autenticação e políticas de segurança.
 
 usa uma série de regras para decidir o que sincronizar

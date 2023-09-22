@@ -177,7 +177,6 @@ O GCDS usa uma série de regras para decidir o que sincronizar porém algumas co
 > O GCDS não sincroniza senhas mas pode adicionar novas senhas. Outra opção é usar o serviço para sincronizar senhas, o GPS - google password sync.
 
 
-
 </details>
 </details>
 
@@ -310,6 +309,7 @@ Passos para autenticar e-mail para g-mails
 3. evite seu domínio de ser usado para enviar spam com DMARC
 4. adicione a logo da sua marca com o BIMI
 
+- O BIMI é um serviço que usa o VMC (Verified Mark Certificate) e um TXT record para criar marcas dentro do google. 
 
 </details>
 
@@ -344,9 +344,7 @@ Determina como os emails são roteados e armazenados:
 
 ## Regras de Compliance
 
-Compliance
-
-Regras de complicance escaneiam e-mails e podem bloquear caso a mensagem bata com alguma regra criada, as mensagens podem ser:
+As regras de Compliance são regras para lidar com os e-mails baseados em critérios como anexos, palavrões, linguagem, extenções,etc.. As regras de complicance escaneiam e-mails e podem bloquear caso a mensagem bata com alguma regra criada, as mensagens podem ser:
 
 - Rejeitadas antes de chegar ao receptor;
 - Enviada para quarentena para ser analisada por um administrador;
@@ -374,39 +372,89 @@ security sandbox - ferramenta que abre o e-mail em espaço sandbox para detectar
 <details>
 <summary> Migração de Serviços </summary><br/>
 
+## Migração de Serviços
+
 > [!WARNING]  
 > Quando eu fiz a Prova de GWAC não caiu nenhuma questão envolvendo migração mas acho que é um assunto interessante de se saber.
 
-Fases de migração de deployment:
+### Fases de migração de deployment:
 
-- Core it
-- Early adopters
-- Global go-live
+- Core it;
+- Early adopters;
+- Global go-live.
 
 
-### Core it (adição de usuários)
-- Criação do design técnico
-- Confirmação e testes do setup
-- Identificar pontos de integração
-- Familiarizar com ferramentas e tecnologias
+- Core it (adição de usuários)
+  - Criação do design técnico;
+  - Confirmação e testes do setup e identifique potencias problemas;
+  - Identificar pontos de integração;
+  - Familiarizar com ferramentas e tecnologias.
 
-### Early Adopters (5 - 15% da força de trabalho)
-- Validar a migração
-- Obter feedbacks
-- Testes de mudança de gerenciamento
-- Adição e configuração de usuários, grupos e contatos
+- Early Adopters (5 - 15% da força de trabalho)
+  - Validar o plano de migração;
+  - Obter feedbacks;
+  - Testes de mudança de gerenciamento;
+  - Adição e configuração de usuários, grupos e contatos.
+  - nessa fase, o mx record envia primeiro para o servidor do google os e-mails e depois roteia para o servidor legado.
 
 > [!NOTE]    
 > Nessa fase é imporatante designar google guides para ajudar com a migração, eles podem ajudar os usuários a se adaptar melhor ao Google Workspace.
 
-- nessa fase, o mx record envia primeiro para o servidor do google os e-mails e depois roteia para o servidor legado
+
   
-### Global go live (100% da força de trabalho) 
-- Inclusão de todos os funcionários
-- Fácil acesso a treinamento requerido
+- Global go live (100% da força de trabalho) 
+  - Inclusão de todos os funcionários;
+  - Fácil acesso a treinamento requerido.
+  
+> [!NOTE]  
+> O google possui o** Google workspace domain transfer** que é um serviço gerenciado para transferir domínios e o software **workspace migrate** para migrar o google workspace. Outra ferramenta importante nesse processo também é o Directory Sync.
 
+### Migração de dados
 
+Temos dois modos de migração para o Google
+
+- Lado do Servidor (Server-Side Migration)
+  - Migração do servidor de dados;
+  - Mais controle e Report de erros;
+  - Feito pelos técnicos de TI.
+- Lado do Cliente (Client-Side Migration)
+  - Usuários instalam e executam o software workspace migrate no computador local;
+  - É aconselhavel treinar e dar suporte a esses usuários durante o processo.
+
+#### Opções de migração de dados
+
+Temos as seguintes opções de migração
+
+- Nada é migrado:
+  - Usuários só recebem o novo e-mail;
+- Migração mínima:
+  - O técnico define o que sera migrado para cada usuário; 
+- Migração Completa:
+  - Todos os dados são migrados, porém isso demora muito tempo.
 </details>
+
+Etapas de migração de dados
+
+1. O técnica cria um arquivo CSV que contenha o endereço a ser migrado;
+2. O serviço de migração é conectado ao servidor que dara os dados;
+3. Os dados são adicionados aos novos usuários.
+
+Relação da fase de migração e a migração de dados
+- Core It - E-Mails parciais / Todos os contatos e calendários (Opcional);
+- Early Adopters - Adição de dados dos usuários que participam dessa fase;
+- Global Go Live - Migração Completa dos dados e recursos.
+
+#### Coexistência
+
+Durante um período, as organizações podem decidir por ter tanto o workspace e a plataforma legado, existem dois tipos de coexistência
+
+- Existência de curto período ( - de 90 dias );
+- Existência de longo período ( + de 90 dias ).
+
+Para lidar com a coexistência, o google possui algumas ferramentas como por exemplo exibir o status ( Livre/Ocupado ) no e-mail. No geral, temos duas opções para lidar com o calendário
+- Manter todos os recursos no calendário legado até a fase **Global Go Live**;
+ou
+- Mover os recursos na fase de **Early Adopters**.
 
 ---
 
@@ -481,8 +529,10 @@ Essa seção aborda alguns itens referente a Segurança no Painel de Administrad
 
 Google Vault
 
-Aplicativo para reter, manter, buscar e exportar dados. Tem várias questões na prova que falam sobre ele. No geral ele é utilizado para armazenar e auditar os dados do workspace.
+Aplicativo para reter, manter, buscar e exportar dados. Tem várias questões na prova que falam sobre ele. No geral ele é utilizado para armazenar e auditar os dados do workspace. Com o Vault você pode abrir Holds (Casos) e gerenciar buscar para auditar os serviços que ele gerencia. 
 
+> [!NOTE]  
+> Mesmo os dados excluídos são ou arquivados o vault consegue acessá-los.
 ---
 
 </details>
@@ -581,6 +631,7 @@ Segue Abaixo um Checklist de Segurança para você saber se sua organização es
 
 - Content- aware access -Serviço que permite que somente dispositivos autenticados pela empresa possam logar no sistema.
 
+- O google takeout é uma opção que impossíbilida que os dados sejam compartilhados fora de uma organização.
 
 - Target audience - publico alvo - grupo de usuários para compartilhar itens, ajudam a melhorar  e facilitam o compartilamento adequado dentro de organizações. Para compartilhar arquivos no google temos duas opções mais recomendadas:
 

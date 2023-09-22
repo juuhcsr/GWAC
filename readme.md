@@ -13,7 +13,7 @@ Essa documentação visa ajudar a entender os principais tópicos e a se prepara
   
 ## Opções no Painel de Administrador
 
-Uma das coisas importantes pra prova é lembrar onde cada coisa pode ser encontrada dentro do painel de administrador como funções de usuários, as funções de compliance, os principais relatórios, onde configurar cada coisa. A tabela abaixo mostra as principais opções dentro do painel de administrador:
+Uma das coisas importantes pra prova é lembrar onde cada coisa pode ser encontrada dentro do painel de administrador como funções de usuários, de compliance, os principais relatórios, onde configurar cada coisa. A tabela abaixo mostra as principais opções dentro do painel de administrador:
 
  Opções do Painel de Administrador
 
@@ -30,18 +30,17 @@ Uma das coisas importantes pra prova é lembrar onde cada coisa pode ser encontr
 | Security                        | Configurações relacionadas à  do sistema, como autenticação e permissões. |
 | Reports                         | Relatórios e análises detalhadas sobre o desempenho e uso do sistema. |
 
-Seguindo essa lógica, podemos seguir os seguintes caminhos para obter relatórios específicos, é importante lembrar que cada um desses relatórios entregam diferentes tipos de dados:
-
+Podemos seguir os seguintes caminhos para obter relatórios específicos, é importante lembrar que cada um desses relatórios entregam diferentes tipos de dados:
 
 Principais caminhos do Painel
 
 |Relatório|	Caminho|
 |:-:|:-:|
-|Relatórios Específicos |	Reports > Audit/Investigation > Events|
-|Roteamento de E-mail |	Apps > Google Workspace > Gmail > Routing|
-|Relatórios Gerais ( Em gráficos ) |	Reports > Reports > Apps Reports > Accounts|
-|Relatórios ( Em tabelas) |	Reports > Reports > Account reports > Accounts|
-|Compliance ( Gmail )	| Apps > Google Workspace > Gmail > Compliance|
+|Relatórios Específicos |	Reports > Audit/Investigation > Events.|
+|Roteamento de E-mail |	Apps > Google Workspace > Gmail > Routing.|
+|Relatórios Gerais ( Em gráficos ) |	Reports > Reports > Apps Reports > Accounts.|
+|Relatórios ( Em tabelas) |	Reports > Reports > Account reports > Accounts.|
+|Compliance ( Gmail )	| Apps > Google Workspace > Gmail > Compliance.|
 
 </details>
 
@@ -60,8 +59,8 @@ Funções Administrativas Do GCP
 |Função Administrativa |	Responsável Por |
 |:-:|:-:|
 |Superadministrador |	Gerencia todos os aspectos da Organização, incluindo recursos e privilégios. Recebe notificações importantes.|
-|Administrador de Grupos |	Controla tarefas de Grupos do Google, gerencia perfis, cria e gerencia grupos, e adiciona marcadores de .|
-|Administrador de Gerenciamento de Usuários |	Realiza ações dos usuários, gerencia perfis e configurações de .|
+|Administrador de Grupos |	Controla tarefas de Grupos do Google, gerencia perfis, cria e gerencia grupos, e adiciona marcadores de segurança.|
+|Administrador de Gerenciamento de Usuários |	Realiza ações dos usuários, gerencia perfis e configurações de segurança.|
 |Administrador de Atendimento ao Usuário |	Redefine senhas para usuários, visualiza perfis e estrutura organizacional.|
 |Administrador de Serviços |	Gerencia dispositivos e configurações de serviços, ativa/desativa serviços e recursos.|
 |Administrador de Dispositivo Móvel |	Gerencia dispositivos móveis, aplicativos e políticas de dispositivo.|
@@ -84,35 +83,35 @@ Serviços de autenticação do GCP
 
 |Serviço|	Explicação|
 |:-:|:-:|
-|IDP ( Identity provider) |	Provedor de identidade que autentica usuários e emite tokens de  |
+|IDP ( Identity provider) |	Provedor de identidade que autentica usuários e emite tokens de segurança |
 |SP ( Service  Provider ) |	Servidor que aceita tokens e da acesso aos usuários |
 |SAML ( Security Assertion Markup Language ) |	Protocolo de autenticação, quando um usuário tenta acessar um app que usa SAML, o SP solicita o IDP para autenticar o usuário |
 |SSO ( Single Sign on ) | Método de autenticação e autorização que permite que usuários acessem múltiplas aplicações com apenas um único login |
 
-Diagrama de Como funciona a autenticação
+Diagrama de Como funciona a autenticação SSO
 
 ```mermaid
 flowchart 
 
 
     A{{Usuário}} --"Usuário acessa
- aplicação"--> B{{Provedor de serviço- SP }}
+ aplicação."--> B{{Provedor de serviço- SP }}
     B --"O serviço solicita
  o idp utilizando o 
-protocolo saml"--> C{{Provedor de identidade - IDP }}
+protocolo SAML."--> C{{Provedor de identidade - IDP }}
     C --"O usuário 
 acessa a tela de 
-login com google"--> D{{"`Conta do Google 
+login com google."--> D{{"`Conta do Google 
 Tela de autenticação`"}}
     D --"O google autentica
- o usuário"--> C
+ o usuário."--> C
     C --"O IDP envia o SAML
  com as informações 
-do usuário"--> B
+do usuário."--> B
 
 B --"O SP faz a validação
  do SAML e o usuário é
- autenticado com sucesso"-->A
+ autenticado com sucesso."-->A
 ```
 
 Etapas da autenticação com o google
@@ -135,11 +134,11 @@ Etapas da autenticação com o google
   
 ## Google Cloud Directory Sync
 
-O Google Cloud Directory Sync é o Serviço que permite sincronizar usuários, grupos e outros dados de um diretório do Active Directory (AD) da Microsoft com o Google Cloud Platform (GCP). Isso pode ser útil para empresas que desejam usar o GCP, mas que também precisam manter seus usuários e grupos em um diretório do AD.
+O Google Cloud Directory Sync é o Serviço que permite sincronizar usuários, grupos e outros dados de um diretório do Active Directory (AD) da Microsoft (Outlook) com o Google Cloud Platform (GCP). Isso pode ser útil para empresas que desejam usar o GCP, mas que também precisam manter seus usuários e grupos em um diretório do AD.
  
 > **O que é LDAP** -  O LDAP (Lightweight Directory Access Protocol) é um protocolo de acesso a diretórios frequentemente usado pelo Active Directory (AD), que é o serviço de diretório da Microsoft usado em ambientes Windows para gerenciar recursos, autenticação e políticas de .
 
-O GCDS usa uma série de regras para decidir o que sincronizar porém algumas coisas não são sincronizadas. Veja na tabela abaixo o que pode ser sincronizado com GCDS (Google Cloud Directory Sync).
+O GCDS usa uma série de regras para decidir o que sincronizar porém algumas coisas não são sincronizadas. Veja na tabela abaixo o que pode ser sincronizado com GCDS (Google Cloud Directory Sync):
 
 | O que pode ser sincronizado ✅ | O que não pode ser sincronizado ❌ |
 |:------------------------------:|:---------------------------------:|
@@ -159,10 +158,10 @@ O GCDS usa uma série de regras para decidir o que sincronizar porém algumas co
 
 ### Etapas de como o GCDS funciona
 
-1. O GCDS é instalado, configurado e recebe as autorizações necessárias
-2. Os dados são extraidos como uma lista do servidor AD
-3. o GCDS gera uma lista com todos os objetos que tem que ser sincronizados
-4. GCDS compara a lista e atualiza o domínio google
+1. O GCDS é instalado, configurado e recebe as autorizações necessárias;
+2. Os dados são extraidos como uma lista do servidor AD;
+3. o GCDS gera uma lista com todos os objetos que tem que ser sincronizados;
+4. GCDS compara a lista e atualiza o domínio google.
 
 > O GCDS não sincroniza senhas mas pode adicionar novas senhas. Outra opção é usar o serviço para sincronizar senhas, o GPS - google password sync.
 
@@ -184,7 +183,7 @@ O DNS ou Domain Name System é o sistema de domínios responsável por armazenar
 
 
 | Serviço                    | Explicação                                                                               |
-|----------------------------|------------------------------------------------------------------------------------------|
+|:----------------------------:|:-----------:|
 | A Record                    | Registros DNS que mapeiam nomes de domínio para endereços IP IPv4.                        |
 | MX Records                  | Registros DNS que especificam os servidores de e-mail para um domínio.                    |
 | TXT Records     | Registros DNS usados para armazenar informações de texto sobre o domínio.               |
@@ -197,24 +196,24 @@ O DNS ou Domain Name System é o sistema de domínios responsável por armazenar
 >  [!IMPORTANT] 
 > Para a prova de Professional Workspace Administrator é muito importante lembrar que os **TXT Records** armazenam qualquer tipo de texto para domínio enquanto os **Cname Records** armazenam somente os domínios.
 
-Cname x TXT Records
+### Cname x TXT Records
 
 O txt record armazena textos, o Cname Mapeia Domínios.
 
 | Use txt Records para:    | Use o Cname record para:        |
 |--------------------------|----------------------------------|
-| Autenticação de domínio  | Criar apelidos de domínios       |
-| Configurar o SPF e o DMARC | Migrar domínios para diferentes provedores |
-| Adicionar Restrições de acesso | Testar o domínio                |
-| Verificação de integridade |                                  |
+| Autenticação de domínio.  | Criar apelidos de domínios.       |
+| Configurar o SPF e o DMARC. | Migrar domínios para diferentes provedores. |
+| Adicionar Restrições de acesso. | Testar o domínio.                |
+| Verificação de integridade. |                                  |
 
-Exemplo de txt record
+Exemplo de txt record:
 ```
 Nome: @ (representa o domínio raiz)
 Tipo: TXT
 Valor: "v=spf1 include:_spf.google.com ~all"
 ```
-Exemplo de Cname Record
+Exemplo de Cname Record:
 ```
 Nome: blog
 Tipo: CNAME
@@ -225,10 +224,9 @@ Valor: example.com
 
 Aliases são Domínios secundários que apontam para o seu domínio princuipal, para adicionar um Alias, use o Directory API. O registro de Aliases é feito com um Cname Record
 
+ Domínio teste : domain-name.test.google-a.com
 
-> Domínio teste : domain-name.test.google-a.com
-
-> O da Calriz seria julio@calriz.test.google-a.com
+ O da Calriz seria julio@calriz.test.google-a.com
 
 </details>
 
@@ -244,7 +242,7 @@ Aliases são Domínios secundários que apontam para o seu domínio princuipal, 
 Grupos são usados para agrupar usuários com base em critérios compartilhados, enquanto Unidades Organizacionais (OUs) criam uma estrutura hierárquica para organizar usuários e recursos em uma organização. Os grupos tem a função de decidir quais **recursos serão compartilhados com maior prioridade** que as OUs, por exemplo, grupos de OUs diferentes podem ter uma mesma permissão.
 
 
-
+> [!NOTE]  
 > Grupos podem ser utilizados para evitar a modificação de OUs.
   
 <details>
@@ -267,13 +265,202 @@ Para criar um grupo em uma organização, você pode seguir estas etapas:
 everyone@dominio.com.br
 ```
 
-> tipos de acesso de grupos - public, team e restricted 
-
 </details>
 </details>
 
 ---
 
+
+
+
+
+---
+
+<details>
+<summary> Registros SPF, DKIM, DMARC E Bimi </summary><br/>
+
+## Registros SPF, DKIM, DMARC E Bimi
+
+Serviços de e-mails
+
+- Registros SPF - protege seu domínio de ser usado para enviar spam;
+- assinatura DKIM - criptografia que protege o conteúdo de e-mail contra spoofim;
+- Autenticação DMArc - gerencia mensagens verificar SPF e DKim;
+- Bimi - Criação de marcas com dmarc.
+
+
+| Serviço | Protocolo de   | Explicação       |
+|:---------------------:|:---------------:|:--------------------------------------:|
+| SPF (Sender Policy Framework) | Autenticação    | Protege e-mails contra spoofing e evita que os e-mails enviados sejam entregues como spam.     |
+| DKIM (Domain Key Identified Mail) | Autenticação  | Assinatura digital. Ajuda a verificar se um determinado e-mail foi realmente enviado por um remetente autorizado.   |
+| DMARC (Domain-based Message Authentication, Reporting, and Conformance) | Controle  | Protocolo de controle de e-mails enviados em seu nome, determinando como tratar os e-mails que não passaram nas verificações DKIM ou SPF. Ajuda a evitar a falsificação de e-mails. |
+| BIMI (Brand Indicator for Message Identification)| - | Permite a exibição de logotipos de marcas em e-mails autenticados.    |
+| Spoofing | -   | Refere-se à alteração de conteúdo dos e-mails. Para prevenir o spoofing, o Google oferece soluções como SPF, DMARC e DKIM.     |
+
+
+Passos para autenticar e-mail para g-mails
+1. garanta entrega e envite falsificações com SPF
+2. Aumente a segurtança do e-mail enviado com DKIM
+3. evite seu domínio de ser usado para enviar spam com DMARC
+4. adicione a logo da sua marca com o BIMI
+
+
+</details>
+
+---
+
+<details>
+<summary> Roteamento de e-mail </summary><br/>
+
+## Roteamento de e-mail
+
+Determina como os emails são roteados e armazenados:
+
+| Métodos de Roteamento de E-mail | Descrição | Exemplo |
+|----------------------------------|-----------|---------|
+| Split Delivery                   | Envio de E-mail para dois sistemas distintos | GWSP > Outlook |
+| Dual Delivery                    | Envio de E-mail para duas caixas do Gmail | Envio para duas contas |
+| Catch-all                        | Envio de E-mails inválidos de uma organização | Quando alguém envia e-mail para um endereço inexistente |
+| Redirect                         | Redirecionamento de e-mails para outras caixas | Conta inativada / Férias |
+
+
+> Exemplo de uso
+> Um funcionário foi demitido, para receber os e-mails enviados para ele, voce pode mapear a caixa de entrada com um map to map para receber os e-mails ( apps>gwsp>gmail>routing)
+
+> Para splitar e-mails para servidor legado, é ncessário adicionar o servidor host e mudar a rota de envio para externa
+
+</details>
+
+---
+
+<details>
+<summary> Regras de Compliance </summary><br/>
+
+## Regras de Compliance
+
+Compliance
+
+Regras de complicance escaneiam e-mails e podem bloquear caso a mensagem bata com alguma regra criada, as mensagens podem ser:
+
+- Rejeitadas antes de chegar ao receptor;
+- Enviada para quarentena para ser analisada por um administrador;
+- Editada antes de ser enviada;
+- Enviada como SPAM.
+
+
+| Opção     | Permite que os usuários | Serve Para  |
+|:---------------:|:------------:|:----------------------------------------:|
+| Email And Chat Autodelete | Definam um período de tempo após o qual os e-mails e bate-papos serão automaticamente excluídos. | Proteger a privacidade dos usuários e a reduzir o risco de dados confidenciais serem expostos. |
+| OCR for attachments   | Extraiam texto de anexos de e-mail e bate-papo. | Fins de conformidade, como auditorias ou investigações. |
+| Restricted Delivery   | Restrinjam o envio de e-mail e bate-papo a certos destinatários ou domínios. | Proteger os usuários contra ataques de phishing ou spam. |
+| Security Sandbox      | Enviem anexos de e-mail e bate-papo para uma sandbox de segurança antes de serem entregues ao destinatário. | Proteger os usuários contra malware e outras ameaças cibernéticas. |
+
+> [!NOTE]  
+> Security sandbox só está disponível para versões enterprise
+security sandbox - ferramenta que abre o e-mail em espaço sandbox para detectar malwares em anexo de -emails.
+
+> Comprehensive mail storage- Ferramenta que verifica se o e-mail foi enviado.
+
+</details>
+
+---
+
+<details>
+<summary> Migração de Serviços </summary><br/>
+
+> [!WARNING]  
+> Quando eu fiz a Prova de GWAC não caiu nenhuma questão envolvendo migração mas acho que é um assunto interessante de se saber.
+
+Fases de migração de deployment:
+
+- Core it
+- Early adopters
+- Global go-live
+
+
+### Core it (adição de usuários)
+- Criação do design técnico
+- Confirmação e testes do setup
+- Identificar pontos de integração
+- Familiarizar com ferramentas e tecnologias
+
+### Early Adopters (5 - 15% da força de trabalho)
+- Validar a migração
+- Obter feedbacks
+- Testes de mudança de gerenciamento
+- Adição e configuração de usuários, grupos e contatos
+
+> [!NOTE]    
+> Nessa fase é imporatante designar google guides para ajudar com a migração, eles podem ajudar os usuários a se adaptar melhor ao Google Workspace.
+
+- nessa fase, o mx record envia primeiro para o servidor do google os e-mails e depois roteia para o servidor legado
+  
+### Global go live (100% da força de trabalho) 
+- Inclusão de todos os funcionários
+- Fácil acesso a treinamento requerido
+
+
+</details>
+
+---
+
+
+<details>
+<summary> Recebendo Updates  </summary><br/>
+
+## Recebendo Updates
+
+O google tem alguns lugares para salvar Updates. entre eles temos :
+
+- Google workspace update blog - Todos up updates do google workspace;
+- google workspace release calendar - Datas de todas as atualizações;
+
+Ao configurar nossa organização para receber as atualizações, podemos escolher os seguintes métodos de update:
+
+- Training or resource launcher - Mudanças mais tardias depois do período de teste
+- Rapid release feature launch - Assim que lançar os usuários vão receber as alterações
+
+
+</details>
+
+---
+
+
+<details>
+<summary>  Ferramentas de Administrador  </summary><br/>
+
+## Ferramentas de Administrador
+
+### Google toolbox - ferramentas de administrador
+
+| Serviços             | Explicação                                             |
+|----------------------|-------------------------------------------------------|
+| Google Toolbox       | Conjunto de ferramentas para gerenciar e proteger o Google Workspace. |
+| Browser Toolbox      | Depurar e testar sites e aplicativos. (Problemas de conectividade)               |
+| DNS Verification     | Verificar a configuração DNS da organização, testes como integridade e configurações.         |
+| Encoding/Decoding    | Debugar problemas com codificações e decodificações. |
+| Log Analyzer         | Análise de relatórios, de erros e avisos de ferramentas. |
+| Mail                 | Análise do cabeçalho do e-mail para ver as rotas e protocolos envolvidos. |
+
+> [!IMPORTANT] 
+> A ferramenta que mais tem chance de cair na prova é a de Mail. Todo e-mail enviado tem as rotas e meios de autenticação definidos no Header do e-mail. Para ver os detalhes sobre ele, você pode procurar nos logs ou análisar a Head.
+
+
+### Security investigation tool
+
+Ferramenta de logs para analisar e tomar ações disponível somente na versão **Enterprise plus**.
+
+- Podemos supender ou restaurar usuários;
+- Acessar dados sobre dispositivos;
+- Ver mensagens do gmail, deletar e-mails maliciosos e revisar atividade;
+- Registros do drive;
+- Identificar, triar e tomar ações de  e privacidade no seu domínio;
+  
+ Para usar, precisa das permissões (require reviewer e view email content);
+
+</details>
+
+---
 
 
 <details>
@@ -370,207 +557,26 @@ Segue Abaixo um Checklist de Segurança para você saber se sua organização es
 </details>
 </details>
 
-
 ---
 
-<details>
-<summary> Registros SPF, DKIM, DMARC E Bimi </summary><br/>
-
-serviços de e-mails
-Registros SPF - protege seu domínio de ser usado p enviar spam
-assinatura DKIM - criptografia que protege o conteúdo de e-mail contra spoofim
-Autenticação DMArc - gerencia mensagens verificar SPF e DKim
-Bimi - Criação de marcas com dmarc
-
-
-| Serviço | Protocolo de   | Explicação       |
-|-----------------------------|---------------|-----------------------------------------------|
-| SPF (Sender Policy Framework) | Autenticação    | Protege e-mails contra spoofing e evita que os e-mails enviados sejam entregues como spam.     |
-| DKIM (Domain Key Identified Mail) | Autenticação  | Assinatura digital. Ajuda a verificar se um determinado e-mail foi realmente enviado por um remetente autorizado.   |
-| DMARC (Domain-based Message Authentication, Reporting, and Conformance) | Controle  | Protocolo de controle de e-mails enviados em seu nome, determinando como tratar os e-mails que não passaram nas verificações DKIM ou SPF. Ajuda a evitar a falsificação de e-mails. |
-| BIMI (Brand Indicator for Message Identification)| - | Permite a exibição de logotipos de marcas em e-mails autenticados.    |
-| Spoofing | -   | Refere-se à alteração de conteúdo dos e-mails. Para prevenir o spoofing, o Google oferece soluções como SPF, DMARC e DKIM.     |
-
-
-passos para autenticar e-mail para g-mails
-1. garanta entrega e envite falsificações com SPF
-2. Aumente a segurtança do e-mail enviado com DKIM
-3. evite seu domínio de ser usado para enviar spam com DMARC
-4. adicione a logo da sua marca com o BIMI
-
-
-</details>
-
----
-
-<details>
-<summary> Roteamento de e-mail </summary><br/>
-
-## Mail routing
-
-Determine como os emails são roteados e armazenados
-
-| Métodos de Roteamento de E-mail | Descrição | Exemplo |
-|----------------------------------|-----------|---------|
-| Split Delivery                   | Envio de E-mail para dois sistemas distintos | GWSP > Outlook |
-| Dual Delivery                    | Envio de E-mail para duas caixas do Gmail | Envio para duas contas |
-| Catch-all                        | Envio de E-mails inválidos de uma organização | Quando alguém envia e-mail para um endereço inexistente |
-| Redirect                         | Redirecionamento de e-mails para outras caixas | Conta inativada / Férias |
-
-
-
-> um funcionário foi demitido, para receber os e-mails enviados para ele, voce pode mapear a caixa de entrada com um map to map para receber os e-mails ( apps>gwsp>gmail>routing)
-
-> Para splitar e-mails para servidor legado, é ncessário adicionar o servidor host e mudar a rota de envio para externa
-
-</details>
-
----
-
-<details>
-<summary> Regras de Compliance </summary><br/>
-
-## Regras de Compliance
-
-Compliance
-
-Regras de complicance escaneiam e-mails e podem bloquear caso a mensagem bata com alguma regra criada, as mensagens podem ser:
-
-- Rejeitadas antes de chegar ao receptor
-- Enviada para quarentena para ser analisada por um administrador
-- Editada antes de ser enviada
-- Enviada como SPAM
-
-
-| Opção                 | Permite que os usuários | Serve Para                                              |
-|-----------------------|-------------------------|---------------------------------------------------------|
-| Email And Chat Autodelete | Definam um período de tempo após o qual os e-mails e bate-papos serão automaticamente excluídos. | Proteger a privacidade dos usuários e a reduzir o risco de dados confidenciais serem expostos. |
-| OCR for attachments   | Extraiam texto de anexos de e-mail e bate-papo. | Fins de conformidade, como auditorias ou investigações. |
-| Restricted Delivery   | Restrinjam o envio de e-mail e bate-papo a certos destinatários ou domínios. | Proteger os usuários contra ataques de phishing ou spam. |
-| Security Sandbox      | Enviem anexos de e-mail e bate-papo para uma sandbox de segurança antes de serem entregues ao destinatário. | Proteger os usuários contra malware e outras ameaças cibernéticas. |
-
-
-> Security sandbox só está disponível para versões enterprise
-security sandbox - ferramenta que abre o e-mail em espaço sandbox para detectar malwares em anexo de -emails.
-
-> Comprehensive mail storage- Ferramenta que verifica se o e-mail foi enviado.
-
-</details>
-
----
-
-<details>
-<summary> Migração de Serviços </summary><br/>
-
-> [!WARNING]  
-> Quando eu fiz a Prova de GWAC não caiu nenhuma questão envolvendo migração mas acho que é um assunto interessante de se saber.
-
-Fases de migração de deployment:
-
-- Core it
-- Early adopters
-- Global go-live
-
-
-### Core it (adição de usuários)
-- Criação do design técnico
-- Confirmação e testes do setup
-- Identificar pontos de integração
-- Familiarizar com ferramentas e tecnologias
-
-### Early Adopters (5 - 15% da força de trabalho)
-- Validar a migração
-- Obter feedbacks
-- Testes de mudança de gerenciamento
-- Adição e configuração de usuários, grupos e contatos
-  
-> Designe google guides para ajudar com a migração
-
-- nessa fase, o mx record envia primeiro para o servidor do google os e-mails e depois roteia para o servidor legado
-  
-### Global go live (100% da força de trabalho) 
-- Inclusão de todos os funcionários
-- Fácil acesso a treinamento requerido
-
-
-> Para migrar um serviço Imap, use a ferramente data migration
-
-</details>
-
----
-
-
-<details>
-<summary> Recebendo Updates  </summary><br/>
-
-## Recebendo Updates
-
-> Google workspace update blog - todos up updates do google workspace
-
-> google workspace release calendar - datas de todas as atualizações
-
-> existem dois tipos de atualizações
-
-> training or resource launcher - mudanças mais tardias
-
-> rapid release feature launch - assim que lançar os usuários vão receber as alterações
-
-
-</details>
-
----
-
-
-<details>
-<summary>  Ferramentas de Administrador  </summary><br/>
-
-## Ferramentas de Administrador
-
-### Google toolbox - ferramentas de administrador
-
-| Serviços             | Explicação                                             |
-|----------------------|-------------------------------------------------------|
-| Google Toolbox       | Conjunto de ferramentas para gerenciar e proteger o Google Workspace. |
-| Browser Toolbox      | Depurar e testar sites e aplicativos. (Problemas de conectividade)               |
-| DNS Verification     | Verificar a configuração DNS da organização, testes como integridade e configurações.         |
-| Encoding/Decoding    | Debugar problemas com codificações e decodificações. |
-| Log Analyzer         | Análise de relatórios, de erros e avisos de ferramentas. |
-| Mail                 | Análise do cabeçalho do e-mail para ver as rotas e protocolos envolvidos. |
-
-> A ferramenta que mais tem chance de cair na prova é a de Mail. Todo e-mail enviado tem as rotas e meios de autenticação definidos no Header do e-mail. Para ver os detalhes sobre ele, você pode procurar nos logs ou análisar a Head.
-
-
-### Security investigation tool
-
-Ferramenta de logs para analisar e tomar ações
-
-> podemos suspoender ou restaurar usuários
-> Para usar, precisa das permissões (require reviewer e view email content)
-> só pra liçença bussiness plus pra cima
-> Serve para deletar e-mails maliciosos e revisar atividade
-> Identificar, triar e tomar ações de  e privacidade no seu domínio
-
-</details>
-
----
 
 <details>
 <summary> Algumas Notas úteis   </summary><br/>
 
 ## Algumas Notas úteis
   
- O Oauth é o protocolo de autorização que permite que aplicativos terceiros (third-party) acessem recursos em nome do usuário. Para dar permissões a apps terceiros, você precisa dos escopos de autorização e do client ID 
+- O Oauth é o protocolo de autorização que permite que aplicativos terceiros (third-party) acessem recursos em nome do usuário. Para dar permissões a apps terceiros, você precisa dos escopos de autorização e do client ID 
 
- O DLP (data loss protection) é um serviço para evitar o compartilhamento de informações sensíveis.
+- O DLP (data loss protection) é um serviço para evitar o compartilhamento de informações sensíveis.
 
- Para adicionar arquivos CSV para usuários é obrigatório: primeiro nome, último nome, senha, e-mail e OU.
+- Para adicionar arquivos CSV para usuários é obrigatório: primeiro nome, último nome, senha, e-mail e OU.
 
- Um usuário deletado só pode ter seus dados recuperados dentro de 20 dias. Para restaura-lo o seu nome não pode ter sido dado pra outra pessoa ou grupo.
+- Um usuário deletado só pode ter seus dados recuperados dentro de 20 dias. Para restaura-lo o seu nome não pode ter sido dado pra outra pessoa ou grupo.
 
-> Content- aware access -Serviço que permite que somente dispositivos autenticados pela empresa possam logar no sistema.
+- Content- aware access -Serviço que permite que somente dispositivos autenticados pela empresa possam logar no sistema.
 
 
-> Target audience - publico alvo - grupo de usuários para compartilhar itens, ajudam a melhorar  e facilitam o compartilamento adequado dentro de organizações. Para compartilhar arquivos no google temos duas opções mais recomendadas:
+- Target audience - publico alvo - grupo de usuários para compartilhar itens, ajudam a melhorar  e facilitam o compartilamento adequado dentro de organizações. Para compartilhar arquivos no google temos duas opções mais recomendadas:
 
 | Recurso         | Target Audience                                             | Visitor Sharing                                           |
 |-----------------|-------------------------------------------------------------|-----------------------------------------------------------|

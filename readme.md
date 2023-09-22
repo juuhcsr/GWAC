@@ -164,6 +164,8 @@ O GCDS usa uma série de regras para decidir o que sincronizar porém algumas co
 
 > O GCDS não sincroniza senhas mas pode adicionar novas senhas. Outra opção é usar o serviço para sincronizar senhas, o GPS - google password sync.
 
+
+
 </details>
 </details>
 
@@ -217,12 +219,6 @@ Tipo: CNAME
 Valor: example.com
 ```
 
-
-pop - sincronização do gmail e outros serviços de email
-Imap - sincroniza a conta em vários dispositivos
-
-
-
 ### Aliases
 
 Aliases são Domínios secundários que apontam para o seu domínio princuipal, para adicionar um Alias, use o Directory API. O registro de Aliases é feito com um Cname Record
@@ -230,7 +226,7 @@ Aliases são Domínios secundários que apontam para o seu domínio princuipal, 
 
 > Domínio teste : domain-name.test.google-a.com
 
-> O da colab seria julio.ferrer@colaborativaeduc.test.google-a.com
+> O da Calriz seria julio@calriz.test.google-a.com
 
 </details>
 
@@ -277,103 +273,53 @@ everyone@dominio.com.br
 ---
 
 
-<details>
-<summary> Google Vault </summary><br/>
-
-Aplicativo para reter, manter, buscar e exportar dados. Tem várias questões na prova que falam sobre ele. No geral ele é utilizado para armazenar e auditar os dados do workspace.
-
-
-
-</details>
-
----
-
-<details>
-<summary> Registros de segurança (SPF,DKIM,DMARC) </summary><br/>
-
-serviços de e-mails
-Registros SPF - protege seu domínio de ser usado p enviar spam
-assinatura DLOM - criptografia que protegej o conteúdo de e-mail
-Autenticação DMArc - gerencia mensagens verificar SPF e DKim
-Bimi - Criação de marcas com dmarc
-
-passos para autenticar e-mail para g-mails
-1. garanta entrega e envite falsificações com SPF
-2. Aumente a segurtança do e-mail enviado com DKIM
-3. evite seu domínio de ser usado para enviar spam com dmarc
-4. adicione a logo da sua marca com o BIMi
-
-
-Opções de segurança de Gmail
-
-SPF - Sender Policy framework - Estrutura da política do remetente -  mecanismo de autenticação de e-mail que ajuda a evitar o spam e a falsificação de e-mail.
-Dkim - Domain Keys Identified Mail Standard - Prevenção de Spoofing adicionando um header personalizado ao e-mail.
-DMarc - Domain based message authentication - fala pro e-mail como lidar com mensagens SPF/DKIM
-
-> email spoofing - conteúdo alterado por falta de configuração
-
-
-
-
-> Bimi - brand indications for message indentification, serve para adicionar uma logo da sua marca
-
-
-
-
-
-
-</details>
-
----
-
-<details>
-<summary> Roteamento de e-mail </summary><br/>
-
-
-
-Mail routing
-
-Determine como os emails são roteados e armazenados
-
-| Tipo de roteamento | Definição                                                                                                          |
-|--------------------|--------------------------------------------------------------------------------------------------------------------|
-| Direct delivery    | O e-mail é entregue diretamente ao servidor de e-mail do destinatário.                                            |
-| Dual delivery      | O e-mail é entregue ao servidor de e-mail do destinatário e a um serviço de entrega alternativo, como uma caixa de entrada de spam ou um serviço de arquivamento. |
-| Split delivery     |Envio de e-mails para vários sistemas . |
-| catch all | redirecionamento de e-mails invalidos |
-| Redirecionamento | redireciona os e-mails para outra caixa de entrada |
-
-> para evitar dados deletados e empregados demitidos, de pra eles uma lience de archived user (Archived user) e extenda o tempo da caixa de entrada
-
-> um funcionário foi demitido, para receber os e-mails enviados para ele, voce pode mapear a caixa de entrada com um map to map para receber os e-mails ( apps>gwsp>gmail>routing)
-
-
-> Para splitar e-mails para servidor legado, é ncessário adicionar o servidor host e mudar a rota de envio para externa
-
-</details>
 
 <details>
 <summary> Segurança </summary><br/>
+## Segurança
+  
+<details>
+<summary> Google Vault </summary><br/>
+
+### Google Vault
+
+Aplicativo para reter, manter, buscar e exportar dados. Tem várias questões na prova que falam sobre ele. No geral ele é utilizado para armazenar e auditar os dados do workspace.
+
+</details>
+
+<details>
+<summary> Verificação de Duas Etapas </summary><br/>
+
+Para fazer a Verificação de Duas Etapas temos 3 opções:
+
+
+| Método                    | Descrição                                       |
+|---------------------------|-------------------------------------------------|
+| Hardware Security Key      | Dispositivo físico para autenticação da conta. |
+| Phone Built-in Security Key | Aplicativo de verificação de código em duas etapas. |
+| Desafios de login | Desafios que podem ser usados para autenticação|
+
+Na opção de Desafios de Login temos as seguintes opções:
+
+| Desafio                    | Descrição                                                                                      |
+|----------------------------|------------------------------------------------------------------------------------------------|
+| Mobile devices login challenge | O Google envia um SMS para confirmar o código de verificação.                                |
+| Employee ID login challenge   | Caso seja adicionado um ID de funcionário, os usuários podem utilizá-lo para verificar, mas é recomendado trocar o código periodicamente por questões de segurança. |
+| Recovery email login challenge | O Google envia um e-mail para confirmar o código de verificação.                               |
 
 
 
-Ativar verificação em duas etapas
+Como ativar a verificação em duas etapas:
+
 1. Segurança
 2. 2- step verification
 3. Allow 2SV
 4. Save
+   
+</details>
 
-Forçar senhas fortes
-1. Segurança
-2. password management
-3. Config
-4. Save
-
-Bloquear apps não seguros
-1. Securit
-2. Less secure apps
-3. Disable less secure apps
-4; save
+<details>
+<summary> Opções de segurança no Painel </summary><br/>
 
 Opções de segurança dos usuários
 - Restar senha
@@ -383,47 +329,128 @@ Opções de segurança dos usuários
 - Requerer mudança de senha
 - Desabilitar desafio de login
 - Restar cookies de Sing-in
-- ver e remover apps de terceiros 
+- ver e remover apps de terceiros
+
+<details>
+<summary> Checklist de Segurança </summary><br/>
+
+Segue Abaixo um Checklist de Segurança para você saber se sua organização está segura essa lista foi retirada (desse site)[https://support.google.com/a/answer/9211704?sjid=2171818016640872930-SA]
+
+**Proteger suas contas**
+  - [ ] Usar senhas exclusivas
+  - [ ] Criar uma senha forte e uma conta mais segura
+  - [ ] Exigir comprovação de identidade para os administradores e usuários específicos
+  - [ ] Os administradores devem adicionar informações de recuperação à conta
+  - [ ] Criar uma conta de superadministrador adicional
+  - [ ] Manter as informações à mão para redefinir a senha de superadministrador
+  - [ ] Os superadministradores não devem permanecer conectados à conta
+  - [ ] Ativar a atualização automática de apps e navegadores da Internet
+  - [ ] Ativar a verificação aprimorada de mensagem de pré-entrega
+  - [ ] Ativar a verificação adicional de arquivos e links maliciosos para o Gmail
+  - [ ] Evitar que os destinatários de e-mail marquem seu e-mail como spam
+  - [ ] Autorizar remetentes de e-mail com o SPF
+  - [ ] Restringir o compartilhamento de agendas com pessoas fora da sua empresa
+  - [ ] Limitar quem pode ver os arquivos recém-criados
+  - [ ] Avisar aos usuários quando eles compartilharem um arquivo com pessoas de fora da sua empresa
+
 
 </details>
+
+
+
+---
+
+<details>
+<summary> Registros SPF, DKIM, DMARC E Bimi </summary><br/>
+
+serviços de e-mails
+Registros SPF - protege seu domínio de ser usado p enviar spam
+assinatura DKIM - criptografia que protege o conteúdo de e-mail contra spoofim
+Autenticação DMArc - gerencia mensagens verificar SPF e DKim
+Bimi - Criação de marcas com dmarc
+
+
+| Serviço | Protocolo de   | Explicação       |
+|-----------------------------|---------------|-----------------------------------------------|
+| SPF (Sender Policy Framework) | Autenticação    | Protege e-mails contra spoofing e evita que os e-mails enviados sejam entregues como spam.     |
+| DKIM (Domain Key Identified Mail) | Autenticação  | Assinatura digital. Ajuda a verificar se um determinado e-mail foi realmente enviado por um remetente autorizado.   |
+| DMARC (Domain-based Message Authentication, Reporting, and Conformance) | Controle  | Protocolo de controle de e-mails enviados em seu nome, determinando como tratar os e-mails que não passaram nas verificações DKIM ou SPF. Ajuda a evitar a falsificação de e-mails. |
+| BIMI (Brand Indicator for Message Identification)| - | Permite a exibição de logotipos de marcas em e-mails autenticados.    |
+| Spoofing | -   | Refere-se à alteração de conteúdo dos e-mails. Para prevenir o spoofing, o Google oferece soluções como SPF, DMARC e DKIM.     |
+
+
+passos para autenticar e-mail para g-mails
+1. garanta entrega e envite falsificações com SPF
+2. Aumente a segurtança do e-mail enviado com DKIM
+3. evite seu domínio de ser usado para enviar spam com DMARC
+4. adicione a logo da sua marca com o BIMI
+
+
+</details>
+
+---
+
+<details>
+<summary> Roteamento de e-mail </summary><br/>
+
+## Mail routing
+
+Determine como os emails são roteados e armazenados
+
+| Métodos de Roteamento de E-mail | Descrição | Exemplo |
+|----------------------------------|-----------|---------|
+| Split Delivery                   | Envio de E-mail para dois sistemas distintos | GWSP > Outlook |
+| Dual Delivery                    | Envio de E-mail para duas caixas do Gmail | Envio para duas contas |
+| Catch-all                        | Envio de E-mails inválidos de uma organização | Quando alguém envia e-mail para um endereço inexistente |
+| Redirect                         | Redirecionamento de e-mails para outras caixas | Conta inativada / Férias |
+
+
+
+> um funcionário foi demitido, para receber os e-mails enviados para ele, voce pode mapear a caixa de entrada com um map to map para receber os e-mails ( apps>gwsp>gmail>routing)
+
+> Para splitar e-mails para servidor legado, é ncessário adicionar o servidor host e mudar a rota de envio para externa
+
+</details>
+
 
 
 <details>
 <summary> Regras de Compliance </summary><br/>
 
+## Regras de Compliance
 
 Compliance
 
 Regras de complicance escaneiam e-mails e podem bloquear caso a mensagem bata com alguma regra criada, as mensagens podem ser:
+
 - Rejeitadas antes de chegar ao receptor
 - Enviada para quarentena para ser analisada por um administrador
 - Editada antes de ser enviada
 - Enviada como SPAM
 
-Opções de compliance
-- Emails e chat auto-deletion
-- OCR for e-mail attachments
-- Restricted delivery
-- security sandbox
 
-| Serviço                   | Uso                                                                                     |
-|---------------------------|-----------------------------------------------------------------------------------------|
-| Emails e chat auto-deletion | Os usuários podem definir um intervalo de tempo após o qual os e-mails e as mensagens de bate-papo serão excluídos automaticamente. Isso pode ajudar a proteger a privacidade dos usuários e a evitar o armazenamento de informações confidenciais por muito tempo. |
-| OCR for e-mail attachments | Os usuários podem usar a tecnologia OCR para converter anexos de e-mail em texto. Isso pode ser útil para visualizar anexos que não são suportados por um programa de e-mail ou para extrair informações de anexos que não são formatados em um formato legível por humanos. |
-| Restricted delivery       | Os usuários podem restringir a entrega de e-mails a certos endereços de e-mail ou domínios. Isso pode ser útil para evitar que e-mails sejam entregues a pessoas ou organizações indesejadas. |
-| Security sandbox          | Os usuários podem usar uma sandbox de segurança para executar arquivos e aplicativos em um ambiente isolado. Isso pode ajudar a proteger os usuários contra malware e outros ataques. |
+| Opção                 | Permite que os usuários | Serve Para                                              |
+|-----------------------|-------------------------|---------------------------------------------------------|
+| Email And Chat Autodelete | Definam um período de tempo após o qual os e-mails e bate-papos serão automaticamente excluídos. | Proteger a privacidade dos usuários e a reduzir o risco de dados confidenciais serem expostos. |
+| OCR for attachments   | Extraiam texto de anexos de e-mail e bate-papo. | Fins de conformidade, como auditorias ou investigações. |
+| Restricted Delivery   | Restrinjam o envio de e-mail e bate-papo a certos destinatários ou domínios. | Proteger os usuários contra ataques de phishing ou spam. |
+| Security Sandbox      | Enviem anexos de e-mail e bate-papo para uma sandbox de segurança antes de serem entregues ao destinatário. | Proteger os usuários contra malware e outras ameaças cibernéticas. |
+
 
 > Security sandbox só está disponível para versões enterprise
 security sandbox - ferramenta que abre o e-mail em espaço sandbox para detectar malwares em anexo de -emails.
 
-> Comprehensive mail storage- verifica se o e-mail foi enviado
+> Comprehensive mail storage- Ferramenta que verifica se o e-mail foi enviado.
 
 </details>
 
 <details>
 <summary> Migração de Serviços </summary><br/>
 
-fases de migração de deployment
+> [!WARNING]  
+> Quando eu fiz a Prova de GWAC não caiu nenhuma questão envolvendo migração mas acho que é um assunto interessante de se saber.
+
+Fases de migração de deployment:
 
 - Core it
 - Early adopters
@@ -441,7 +468,8 @@ fases de migração de deployment
 - Obter feedbacks
 - Testes de mudança de gerenciamento
 - Adição e configuração de usuários, grupos e contatos
-> Designe google guides para ajudar com a organização
+  
+> Designe google guides para ajudar com a migração
 
 - nessa fase, o mx record envia primeiro para o servidor do google os e-mails e depois roteia para o servidor legado
   
@@ -460,6 +488,7 @@ fases de migração de deployment
 <details>
 <summary> Recebendo Updates  </summary><br/>
 
+## Recebendo Updates
 
 > Google workspace update blog - todos up updates do google workspace
 
@@ -475,58 +504,28 @@ fases de migração de deployment
 </details>
 
 
-<details>
-<summary> Algumas Notas úteis   </summary><br/>
-
-  
-> O Oauth é o protocolo de autorização que permite que aplicativos terceiros (third-party) acessem recursos em nome do usuário
-
-> Para dar permissões a apps terceiros, você precisa dos escopos de autorização e do client ID 
-
-> O dlp (data loss protection) é um serviço para efvitar o compartilhamento de informações esnsíveis
-
-> Para adicionar arquivos CSV para usuários é obrigatório: primeiro nome, último nome, senha, e-mail e OU
-
-> Um usuário deletado só pode ter seus dados recuperados dentro de 20 dias.
-
-> para restaura-lo o seu nome não pode ter sido dado pra outra pessoa ou grupo
-
-> Content-aware - somente dispositivos da empresa podem logar no sistema
-
-
-
-Target audience - publico alvo - grupo de usuários para compartilhar itens, ajudam a melhorar se gurança e facilitam o compartilamento adequado 
-Content- aware access - para usuários conectarem de casa em computador pessoais, configure o endpoint verification
-
-
-
-</details>
 
 
 <details>
 <summary>  Ferramentas de Administrador  </summary><br/>
 
+## Ferramentas de Administrador
+
+### Google toolbox - ferramentas de administrador
+
+| Serviços             | Explicação                                             |
+|----------------------|-------------------------------------------------------|
+| Google Toolbox       | Conjunto de ferramentas para gerenciar e proteger o Google Workspace. |
+| Browser Toolbox      | Depurar e testar sites e aplicativos. (Problemas de conectividade)               |
+| DNS Verification     | Verificar a configuração DNS da organização, testes como integridade e configurações.         |
+| Encoding/Decoding    | Debugar problemas com codificações e decodificações. |
+| Log Analyzer         | Análise de relatórios, de erros e avisos de ferramentas. |
+| Mail                 | Análise do cabeçalho do e-mail para ver as rotas e protocolos envolvidos. |
+
+> A ferramenta que mais tem chance de cair na prova é a de Mail. Todo e-mail enviado tem as rotas e meios de autenticação definidos no Header do e-mail. Para ver os detalhes sobre ele, você pode procurar nos logs ou análisar a Head.
 
 
-
-
-
-> admin toolbox - ferramentas de administrador
-
-google toolbox 
-browser toolbox - problemas de conectividade
-dns verification - testes como integridade e configurações
-enconding/decodign - debugar problemas com codificações
-log analyzer - erros e avisos em arquivos e ferramentas
-mail - análise do cabeçalho do e-mail para ver entrega e roteamento 
-
-O header do e-mail é usado para definir as rotas e meios de autenticação
-
-> para ver se um e-mail foi enviado, verifique o log dele
-
-
-
-Security investigation tool
+### Security investigation tool
 
 Ferramenta de logs para analisar e tomar ações
 
@@ -538,21 +537,44 @@ Ferramenta de logs para analisar e tomar ações
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 <details>
 <summary> </summary><br/>
 </details>
 
 
 
+<details>
+<summary> Algumas Notas úteis   </summary><br/>
+
+## Algumas Notas úteis
+  
+> O Oauth é o protocolo de autorização que permite que aplicativos terceiros (third-party) acessem recursos em nome do usuário
+
+> Para dar permissões a apps terceiros, você precisa dos escopos de autorização e do client ID 
+
+> O dlp (data loss protection) é um serviço para efvitar o compartilhamento de informações esnsíveis
+
+> Para adicionar arquivos CSV para usuários é obrigatório: primeiro nome, último nome, senha, e-mail e OU
+
+> Um usuário deletado só pode ter seus dados recuperados dentro de 20 dias.
+
+> Para restaura-lo o seu nome não pode ter sido dado pra outra pessoa ou grupo
+
+> Content-aware - somente dispositivos da empresa podem logar no sistema
+> Content- aware access - para usuários conectarem de casa em computador pessoais, configure o endpoint verification
+
+
+> Target audience - publico alvo - grupo de usuários para compartilhar itens, ajudam a melhorar segurança e facilitam o compartilamento adequado dentro de organizações. Para compartilhar arquivos no google temos duas opções mais recomendadas:
+| Recurso         | Target Audience                                             | Visitor Sharing                                           |
+|-----------------|-------------------------------------------------------------|-----------------------------------------------------------|
+| Acesso          | Permite controlar quem pode acessar um recurso ou dado, com usuários pré-aprovados | Permite compartilhar dados com visitantes de um site ou aplicativo com qualquer pessoa que tiver o link. |
+| Como Acessar    | Pode ser feito por meio de permissões de usuário, grupos ou papéis. O convite pode ser feito pela conta de e-mail | Os visitantes podem acessar os dados por meio de um link ou uma API. |
+| Podem editar    | Depende das permissões concedidas.                          | Os visitantes não podem editar os dados, a menos que tenham permissões específicas. |
+| Segurança       | Ajuda a proteger dados confidenciais de acesso não autorizado como usuários pré-aprovados. | Feito de forma segura usando um URL ou um código de compartilhamento criptografado. |
+
+
+
+
+
+</details>
 

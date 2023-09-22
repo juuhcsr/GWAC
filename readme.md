@@ -456,6 +456,7 @@ Para lidar com a coexistência, o google possui algumas ferramentas como por exe
 ou
 - Mover os recursos na fase de **Early Adopters**.
 </details>
+
 ---
 
 

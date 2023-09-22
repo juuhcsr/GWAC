@@ -8,8 +8,12 @@ Essa documentação visa ajudar a entender os principais tópicos e a se prepara
 
 <details>
 <summary> Opções no Painel de Administrador </summary><br/>
+  
+## Opções no Painel de Administrador
 
 Uma das coisas importantes pra prova é lembrar onde cada coisa pode ser encontrada dentro do painel de administrador como funções de usuários, as funções de compliance, os principais relatórios, onde configurar cada coisa. A tabela abaixo mostra as principais opções dentro do painel de administrador:
+
+ Opções do Painel de Administrador
 
 | Opção no Painel de Administrador | Descrição                                        |
 |:---------------------------------:|:--------------------------------------------------:|
@@ -26,6 +30,9 @@ Uma das coisas importantes pra prova é lembrar onde cada coisa pode ser encontr
 
 Seguindo essa lógica, podemos seguir os seguintes caminhos para obter relatórios específicos, é importante lembrar que cada um desses relatórios entregam diferentes tipos de dados:
 
+
+Principais caminhos do Painel
+
 |Relatório|	Caminho|
 |:-:|:-:|
 |Relatórios Específicos |	Reports > Audit/Investigation > Events|
@@ -41,11 +48,12 @@ Seguindo essa lógica, podemos seguir os seguintes caminhos para obter relatóri
 <details>
 <summary> Funções administrativas </summary><br/>
 
-Uma das boas práticas do google é a prática do privilégio mínimo onde cada usuário tem acesso às ferramentas e aos recursos necessários para as tarefas diárias. 
+  ##  Funções administrativas
+  
+Uma das boas práticas do google é a prática do privilégio mínimo onde cada usuário tem acesso às ferramentas e aos recursos necessários para as tarefas diárias. Para lidar com essa prática, podemos segmentar as funções administrativas dentro de uma empresa de modo que os colaboradores tenham acesso somente ao necessário.
 
-Para lidar com essa prática, podemos segmentar as funções administrativas dentro de uma empresa de modo que os colaboradores tenham acesso somente ao necessário.
 
-
+Funções Administrativas Do GCP
 
 |Função Administrativa |	Responsável Por |
 |:-:|:-:|
@@ -65,8 +73,12 @@ Para lidar com essa prática, podemos segmentar as funções administrativas den
 
 <details>
 <summary> Autenticação Google </summary><br/>
-
+  
+## Autenticação Google
+  
 A autenticação do Google usa vários serviços, os principais conceitos vão de SSO a IDP e SP, vamos ver eles agora:
+
+Serviços de autenticação do GCP
 
 |Serviço|	Explicação|
 |:-:|:-:|
@@ -75,6 +87,7 @@ A autenticação do Google usa vários serviços, os principais conceitos vão d
 |SAML ( Security Assertion Markup Language ) |	Protocolo de autenticação, quando um usuário tenta acessar um app que usa SAML, o SP solicita o IDP para autenticar o usuário |
 |SSO ( Single Sign on ) | Método de autenticação e autorização que permite que usuários acessem múltiplas aplicações com apenas um único login |
 
+Diagrama de Como funciona a autenticação
 
 ```mermaid
 flowchart 
@@ -115,31 +128,73 @@ Etapas da autenticação com o google
 ---
 
 
-
-
-O último passo é configurar o domínio DNS. Isso envolverá a adição de registros DNS ao seu domínio para apontar para o Google Workspace.
-
-Os registros DNS específicos que você precisa adicionar dependerão do seu registrador de domínio e do tipo de domínio que você registrou. No entanto, geralmente, você precisará adicionar os seguintes registros DNS:
-
-- Nome do host (A) registro para o endereço IP do servidor do Google Workspace
-- Registro MX para o servidor de correio do Google Workspace
-- Registro TXT para o domínio do Google Workspace
-Depois de adicionar os registros DNS, pode levar algumas horas para que as alterações sejam propagadas. Depois que as alterações forem propagadas, você poderá começar a usar o Google Workspace!
-
 <details>
 <summary> Google Cloud Directory Sync  </summary><br/>
+  
+## Google Cloud Directory Sync
 
-Serviço que permite sincronizar usuários, grupos e outros dados de um diretório do Active Directory (AD) com o Google Cloud Platform (GCP). Isso pode ser útil para empresas que desejam usar o GCP, mas que também precisam manter seus usuários e grupos em um diretório do AD.
-
-|LDAP ( Lightweight directory access protocol)	Protocolo que permite que os usários acessem dados no servidor ( Esse é o protocolo usado pelo servidor AD ( Active Directory) 
+O Google Cloud Directory Sync é o Serviço que permite sincronizar usuários, grupos e outros dados de um diretório do Active Directory (AD) da Microsoft com o Google Cloud Platform (GCP). Isso pode ser útil para empresas que desejam usar o GCP, mas que também precisam manter seus usuários e grupos em um diretório do AD.
+ 
 > **O que é LDAP** -  O LDAP (Lightweight Directory Access Protocol) é um protocolo de acesso a diretórios frequentemente usado pelo Active Directory (AD), que é o serviço de diretório da Microsoft usado em ambientes Windows para gerenciar recursos, autenticação e políticas de segurança.
 
-usa uma série de regras para decidir o que sincronizar
+O GCDS usa uma série de regras para decidir o que sincronizar porém algumas coisas não são sincronizadas. Veja na tabela abaixo o que pode ser sincronizado com GCDS (Google Cloud Directory Sync).
+
+| O que pode ser sincronizado ✅ | O que não pode ser sincronizado ❌ |
+|:------------------------------:|:---------------------------------:|
+| Unidades Organizacionais (OUs) | Mensagens                         |
+| Usuários e Senhas              | Eventos                           |
+| Perfis de usuários             | Arquivos                          |
+| Grupos                         | Pastas                            |
+| Esquemas organizacionais       |                                   |
+| Contatos                       |                                   |
+| Recursos de calendário         |                                   |
+| Licenças                       |                                   |
+
+
 </details>
 </details>
 
 
 ---
+
+<details>
+<summary> DNS  </summary><br/>
+
+## DNS
+
+O DNS ou Domain Name System é o sistema de domínios responsável por armazenar e cuidar de todos os domínios e fazer a tradução de endereços para ip. O DNS possui diversos tipos de registos:
+
+
+
+| Serviço                    | Explicação                                                                               |
+|----------------------------|------------------------------------------------------------------------------------------|
+| A Record                    | Registros DNS que mapeiam nomes de domínio para endereços IP IPv4.                        |
+| MX Records                  | Registros DNS que especificam os servidores de e-mail para um domínio.                    |
+| TXT Records     | Registros DNS usados para armazenar informações de texto sobre o domínio.               |
+| CNAME Record                | Registros DNS usados para criar aliases (apelidos) para nomes de domínio.                |
+| NS (Name Server) Records    | Registros DNS que especificam os servidores de nomes autoritativos para um domínio.     |
+| SPF (Sender Policy Framework) Record | Registros DNS usados para verificar a autenticidade dos remetentes de e-mail.  |
+| DKIM (DomainKeys Identified Mail) Record | Registros DNS que ajudam a autenticar e-mails enviados de um domínio.     |
+</details>
+ [!NOTE]
+ 
+>  [!NOTE]
+> 
+> Para a prova de Professional Workspace Administrator é muito importante lembrar que os **TXT Records** armazenam qualquer tipo de texto para domínio enquanto os **Cname Records** armazenam somente os domínios.
+
+> [!NOTE]  
+> Highlights information that users should take into account, even when skimming.
+
+> [!IMPORTANT]  
+> Crucial information necessary for users to succeed.
+
+> [!WARNING]  
+> Critical content demanding immediate user attention due to potential risks.
+<div class="warning">
+    <p><strong>Atenção:</strong> Este é um aviso importante.</p>
+</div>
+
+
 
 <details>
 <summary> Google Groups </summary><br/>

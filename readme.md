@@ -431,7 +431,7 @@ Temos as seguintes opções de migração
   - O técnico define o que sera migrado para cada usuário; 
 - Migração Completa:
   - Todos os dados são migrados, porém isso demora muito tempo.
-</details>
+
 
 Etapas de migração de dados
 
@@ -455,7 +455,7 @@ Para lidar com a coexistência, o google possui algumas ferramentas como por exe
 - Manter todos os recursos no calendário legado até a fase **Global Go Live**;
 ou
 - Mover os recursos na fase de **Early Adopters**.
-
+</details>
 ---
 
 

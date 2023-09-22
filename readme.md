@@ -271,11 +271,6 @@ everyone@dominio.com.br
 ---
 
 
-
-
-
----
-
 <details>
 <summary> Registros SPF, DKIM, DMARC E Bimi </summary><br/>
 

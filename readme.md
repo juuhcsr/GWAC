@@ -73,7 +73,7 @@ Funções Administrativas Do GCP
 ---
 
 <details>
-<summary> Autenticação Google </summary><br/>
+<summary> Autenticação Google * </summary><br/>
   
 ## Autenticação Google
   

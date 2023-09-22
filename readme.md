@@ -3,7 +3,7 @@ Documentação Técnica referente a certificação Professional Google Workspace
 
 Essa documentação visa ajudar a entender os principais tópicos e a se preparar para o conteúdo da prova de Professional Google Workspace Administrator.
 
-  A maior parte da prova tem configurações de Gmail ou configurações no próprio painel de administrador do google. Os principais assuntos pra lembrar dessa parte da prova é sobre os protocolos de segurança como SPF, DMARC e DKIM, sobre regras de roteamento, as principais opções de compliance e outros assuntos que veremos nesse doc.
+  A maior parte da prova tem configurações de Gmail ou configurações no próprio painel de administrador do google. Os principais assuntos pra lembrar dessa parte da prova é sobre os protocolos de  como SPF, DMARC e DKIM, sobre regras de roteamento, as principais opções de compliance e outros assuntos que veremos nesse doc.
 
 
 <details>
@@ -25,7 +25,7 @@ Uma das coisas importantes pra prova é lembrar onde cada coisa pode ser encontr
 | Devices                         | Gerenciamento de dispositivos associados ao sistema, se aplicável. |
 | Account Settings                | Configurações gerais da conta do administrador. |
 | Organization Units              | Configuração de unidades organizacionais para estruturar usuários ou recursos. |
-| Security                        | Configurações relacionadas à segurança do sistema, como autenticação e permissões. |
+| Security                        | Configurações relacionadas à  do sistema, como autenticação e permissões. |
 | Reports                         | Relatórios e análises detalhadas sobre o desempenho e uso do sistema. |
 
 Seguindo essa lógica, podemos seguir os seguintes caminhos para obter relatórios específicos, é importante lembrar que cada um desses relatórios entregam diferentes tipos de dados:
@@ -58,8 +58,8 @@ Funções Administrativas Do GCP
 |Função Administrativa |	Responsável Por |
 |:-:|:-:|
 |Superadministrador |	Gerencia todos os aspectos da Organização, incluindo recursos e privilégios. Recebe notificações importantes.|
-|Administrador de Grupos |	Controla tarefas de Grupos do Google, gerencia perfis, cria e gerencia grupos, e adiciona marcadores de segurança.|
-|Administrador de Gerenciamento de Usuários |	Realiza ações dos usuários, gerencia perfis e configurações de segurança.|
+|Administrador de Grupos |	Controla tarefas de Grupos do Google, gerencia perfis, cria e gerencia grupos, e adiciona marcadores de .|
+|Administrador de Gerenciamento de Usuários |	Realiza ações dos usuários, gerencia perfis e configurações de .|
 |Administrador de Atendimento ao Usuário |	Redefine senhas para usuários, visualiza perfis e estrutura organizacional.|
 |Administrador de Serviços |	Gerencia dispositivos e configurações de serviços, ativa/desativa serviços e recursos.|
 |Administrador de Dispositivo Móvel |	Gerencia dispositivos móveis, aplicativos e políticas de dispositivo.|
@@ -82,7 +82,7 @@ Serviços de autenticação do GCP
 
 |Serviço|	Explicação|
 |:-:|:-:|
-|IDP ( Identity provider) |	Provedor de identidade que autentica usuários e emite tokens de segurança |
+|IDP ( Identity provider) |	Provedor de identidade que autentica usuários e emite tokens de  |
 |SP ( Service  Provider ) |	Servidor que aceita tokens e da acesso aos usuários |
 |SAML ( Security Assertion Markup Language ) |	Protocolo de autenticação, quando um usuário tenta acessar um app que usa SAML, o SP solicita o IDP para autenticar o usuário |
 |SSO ( Single Sign on ) | Método de autenticação e autorização que permite que usuários acessem múltiplas aplicações com apenas um único login |
@@ -135,7 +135,7 @@ Etapas da autenticação com o google
 
 O Google Cloud Directory Sync é o Serviço que permite sincronizar usuários, grupos e outros dados de um diretório do Active Directory (AD) da Microsoft com o Google Cloud Platform (GCP). Isso pode ser útil para empresas que desejam usar o GCP, mas que também precisam manter seus usuários e grupos em um diretório do AD.
  
-> **O que é LDAP** -  O LDAP (Lightweight Directory Access Protocol) é um protocolo de acesso a diretórios frequentemente usado pelo Active Directory (AD), que é o serviço de diretório da Microsoft usado em ambientes Windows para gerenciar recursos, autenticação e políticas de segurança.
+> **O que é LDAP** -  O LDAP (Lightweight Directory Access Protocol) é um protocolo de acesso a diretórios frequentemente usado pelo Active Directory (AD), que é o serviço de diretório da Microsoft usado em ambientes Windows para gerenciar recursos, autenticação e políticas de .
 
 O GCDS usa uma série de regras para decidir o que sincronizar porém algumas coisas não são sincronizadas. Veja na tabela abaixo o que pode ser sincronizado com GCDS (Google Cloud Directory Sync).
 
@@ -276,14 +276,19 @@ everyone@dominio.com.br
 
 <details>
 <summary> Segurança </summary><br/>
-## Segurança
+
+  ## Segurança
+
+Essa seção aborda alguns itens referente a Segurança no Painel de Administrador.
   
 <details>
 <summary> Google Vault </summary><br/>
 
-### Google Vault
+Google Vault
 
 Aplicativo para reter, manter, buscar e exportar dados. Tem várias questões na prova que falam sobre ele. No geral ele é utilizado para armazenar e auditar os dados do workspace.
+
+---
 
 </details>
 
@@ -315,6 +320,8 @@ Como ativar a verificação em duas etapas:
 2. 2- step verification
 3. Allow 2SV
 4. Save
+
+---
    
 </details>
 
@@ -331,20 +338,24 @@ Opções de segurança dos usuários
 - Restar cookies de Sing-in
 - ver e remover apps de terceiros
 
+---
+
+</details>
+
 <details>
 <summary> Checklist de Segurança </summary><br/>
 
-Segue Abaixo um Checklist de Segurança para você saber se sua organização está segura essa lista foi retirada (desse site)[https://support.google.com/a/answer/9211704?sjid=2171818016640872930-SA]
+Segue Abaixo um Checklist de Segurança para você saber se sua organização está segura essa lista foi retirada [desse site](https://support.google.com/a/answer/9211704?sjid=2171818016640872930-SA)
 
 **Proteger suas contas**
-  - [ ] Usar senhas exclusivas
-  - [ ] Criar uma senha forte e uma conta mais segura
-  - [ ] Exigir comprovação de identidade para os administradores e usuários específicos
-  - [ ] Os administradores devem adicionar informações de recuperação à conta
-  - [ ] Criar uma conta de superadministrador adicional
-  - [ ] Manter as informações à mão para redefinir a senha de superadministrador
-  - [ ] Os superadministradores não devem permanecer conectados à conta
-  - [ ] Ativar a atualização automática de apps e navegadores da Internet
+  - [x] Usar senhas exclusivas
+  - [x] Criar uma senha forte e uma conta mais segura
+  - [x] Exigir comprovação de identidade para os administradores e usuários específicos
+  - [x] Os administradores devem adicionar informações de recuperação à conta
+  - [x] Criar uma conta de superadministrador adicional
+  - [x] Manter as informações à mão para redefinir a senha de superadministrador
+  - [x] Os superadministradores não devem permanecer conectados à conta
+  - [x] Ativar a atualização automática de apps e navegadores da Internet
   - [ ] Ativar a verificação aprimorada de mensagem de pré-entrega
   - [ ] Ativar a verificação adicional de arquivos e links maliciosos para o Gmail
   - [ ] Evitar que os destinatários de e-mail marquem seu e-mail como spam
@@ -355,7 +366,7 @@ Segue Abaixo um Checklist de Segurança para você saber se sua organização es
 
 
 </details>
-
+</details>
 
 
 ---
@@ -412,7 +423,7 @@ Determine como os emails são roteados e armazenados
 
 </details>
 
-
+---
 
 <details>
 <summary> Regras de Compliance </summary><br/>
@@ -443,6 +454,8 @@ security sandbox - ferramenta que abre o e-mail em espaço sandbox para detectar
 > Comprehensive mail storage- Ferramenta que verifica se o e-mail foi enviado.
 
 </details>
+
+---
 
 <details>
 <summary> Migração de Serviços </summary><br/>
@@ -482,7 +495,7 @@ Fases de migração de deployment:
 
 </details>
 
-
+---
 
 
 <details>
@@ -503,7 +516,7 @@ Fases de migração de deployment:
 
 </details>
 
-
+---
 
 
 <details>
@@ -533,44 +546,36 @@ Ferramenta de logs para analisar e tomar ações
 > Para usar, precisa das permissões (require reviewer e view email content)
 > só pra liçença bussiness plus pra cima
 > Serve para deletar e-mails maliciosos e revisar atividade
-> Identificar, triar e tomar ações de segurança e privacidade no seu domínio
+> Identificar, triar e tomar ações de  e privacidade no seu domínio
 
-
-
-<details>
-<summary> </summary><br/>
 </details>
 
-
+---
 
 <details>
 <summary> Algumas Notas úteis   </summary><br/>
 
 ## Algumas Notas úteis
   
-> O Oauth é o protocolo de autorização que permite que aplicativos terceiros (third-party) acessem recursos em nome do usuário
+ O Oauth é o protocolo de autorização que permite que aplicativos terceiros (third-party) acessem recursos em nome do usuário. Para dar permissões a apps terceiros, você precisa dos escopos de autorização e do client ID 
 
-> Para dar permissões a apps terceiros, você precisa dos escopos de autorização e do client ID 
+ O DLP (data loss protection) é um serviço para evitar o compartilhamento de informações sensíveis.
 
-> O dlp (data loss protection) é um serviço para efvitar o compartilhamento de informações esnsíveis
+ Para adicionar arquivos CSV para usuários é obrigatório: primeiro nome, último nome, senha, e-mail e OU.
 
-> Para adicionar arquivos CSV para usuários é obrigatório: primeiro nome, último nome, senha, e-mail e OU
+ Um usuário deletado só pode ter seus dados recuperados dentro de 20 dias. Para restaura-lo o seu nome não pode ter sido dado pra outra pessoa ou grupo.
 
-> Um usuário deletado só pode ter seus dados recuperados dentro de 20 dias.
-
-> Para restaura-lo o seu nome não pode ter sido dado pra outra pessoa ou grupo
-
-> Content-aware - somente dispositivos da empresa podem logar no sistema
-> Content- aware access - para usuários conectarem de casa em computador pessoais, configure o endpoint verification
+> Content- aware access -Serviço que permite que somente dispositivos autenticados pela empresa possam logar no sistema.
 
 
-> Target audience - publico alvo - grupo de usuários para compartilhar itens, ajudam a melhorar segurança e facilitam o compartilamento adequado dentro de organizações. Para compartilhar arquivos no google temos duas opções mais recomendadas:
+> Target audience - publico alvo - grupo de usuários para compartilhar itens, ajudam a melhorar  e facilitam o compartilamento adequado dentro de organizações. Para compartilhar arquivos no google temos duas opções mais recomendadas:
+
 | Recurso         | Target Audience                                             | Visitor Sharing                                           |
 |-----------------|-------------------------------------------------------------|-----------------------------------------------------------|
 | Acesso          | Permite controlar quem pode acessar um recurso ou dado, com usuários pré-aprovados | Permite compartilhar dados com visitantes de um site ou aplicativo com qualquer pessoa que tiver o link. |
 | Como Acessar    | Pode ser feito por meio de permissões de usuário, grupos ou papéis. O convite pode ser feito pela conta de e-mail | Os visitantes podem acessar os dados por meio de um link ou uma API. |
 | Podem editar    | Depende das permissões concedidas.                          | Os visitantes não podem editar os dados, a menos que tenham permissões específicas. |
-| Segurança       | Ajuda a proteger dados confidenciais de acesso não autorizado como usuários pré-aprovados. | Feito de forma segura usando um URL ou um código de compartilhamento criptografado. |
+|Segurança   | Ajuda a proteger dados confidenciais de acesso não autorizado como usuários pré-aprovados. | Feito de forma segura usando um URL ou um código de compartilhamento criptografado. |
 
 
 

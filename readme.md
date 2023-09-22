@@ -124,6 +124,14 @@ Etapas da autenticação com o google
 1. O Serviço garante acesso ao usuário
 1. O usuário é autenticado com sucesso
 
+
+### Autenticação OAUTH
+
+A autenticação OAUTH 2.0 é um protocolo de autorização que permite que os aplicativos terceiros acessem recursos no workspace em nome do usuário. Sempre que você ver alguma questão em relação a autenticação de Apps terceiros, OAUTH pode ser uma solução utilizada
+
+
+
+
 </details>
 
 ---

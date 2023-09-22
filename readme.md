@@ -5,6 +5,8 @@ Essa documentação visa ajudar a entender os principais tópicos e a se prepara
 
   A maior parte da prova tem configurações de Gmail ou configurações no próprio painel de administrador do google. Os principais assuntos pra lembrar dessa parte da prova é sobre os protocolos de  como SPF, DMARC e DKIM, sobre regras de roteamento, as principais opções de compliance e outros assuntos que veremos nesse doc.
 
+<br>
+<br>
 
 <details>
 <summary> Opções no Painel de Administrador </summary><br/>

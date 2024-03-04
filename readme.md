@@ -154,7 +154,7 @@ O GCDS usa uma série de regras para decidir o que sincronizar porém algumas co
 | O que pode ser sincronizado ✅ | O que não pode ser sincronizado ❌ |
 |:------------------------------:|:---------------------------------:|
 | Unidades Organizacionais (OUs) | Mensagens                         |
-| Usuários e Senhas              | Eventos                           |
+| Usuários               | Eventos                           |
 | Perfis de usuários             | Arquivos                          |
 | Grupos                         | Pastas                            |
 | Esquemas organizacionais       | Senhas                            |
